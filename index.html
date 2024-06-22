@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p> El día de hoy el instructor @Eduardo va a subir un nuevo curso con su compañera @Carla al canal de Kodoti sobre
+        expresiones regulares.</p>
+    <script>
+        window.onload = function () {
+            let pattern = /@[A-Za-z]+/g;
+            let p = document.querySelector('p');
+
+            if (p) {
+                let text = p.innerText;
+
+                const result = text.match(pattern);
+                if (result) {
+                    result.forEach(value => {
+                        // Remover el símbolo '@' del valor en el enlace
+                        let username = value.slice(1);
+                        text = text.replace(value, `<a href="https://kodoti.com/u/${username}">${value}</a>`);
+                    });
+
+                    p.innerHTML = text;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>
